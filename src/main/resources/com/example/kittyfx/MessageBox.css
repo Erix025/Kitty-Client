@@ -1,0 +1,18 @@
+.but_exit {
+    -fx-background-image: url(MessageBox/Exit_small.png);
+}
+
+.but_exit:hover {
+    -fx-background-image: url(MessageBox/Exit_small_hover.png);
+}
+
+.panel {
+    -fx-background-image: url(MessageBox/Background.png);
+    -fx-background-color: transparent;
+}
+
+.text {
+    -fx-font-style: "¿¬Ìå";
+    -fx-font-size: 16px;
+    -fx-font-weight: 5px;
+}
