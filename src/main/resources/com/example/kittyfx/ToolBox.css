@@ -1,0 +1,14 @@
+.button_exit {
+    -fx-background-image: url("ToolBox/icons/Exit.png");
+    -fx-background-color: transparent;
+}
+
+.button_exit:hover {
+    -fx-background-image: url("ToolBox/icons/Exit_hover.png")
+}
+.panel{
+    -fx-background-image: url("ToolBox/Background.png")
+}
+.root {
+    -fx-background-color: transparent;
+}
