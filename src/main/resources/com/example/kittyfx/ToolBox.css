@@ -1,14 +1,17 @@
-.button_exit {
-    -fx-background-image: url("ToolBox/icons/Exit.png");
-    -fx-background-color: transparent;
+.panel {
+    -fx-background-color: #eff6fc;
 }
 
-.button_exit:hover {
-    -fx-background-image: url("ToolBox/icons/Exit_hover.png")
+.topBar {
+    -fx-background-color: #0078d4;
 }
-.panel{
-    -fx-background-image: url("ToolBox/Background.png")
+
+.button {
+    -fx-background-color: #fff4ce;
+    -fx-border-width: 2px;
+    -fx-border-color: #ffc038;
 }
-.root {
-    -fx-background-color: transparent;
+
+.button:hover {
+    -fx-background-color: #ff841f;
 }

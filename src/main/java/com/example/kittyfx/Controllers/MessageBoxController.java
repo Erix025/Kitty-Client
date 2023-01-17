@@ -1,4 +1,4 @@
-package com.example.kittyfx;
+package com.example.kittyfx.Controllers;
 
 import com.example.kittyfx.manager.StagesManager;
 import javafx.fxml.FXML;
@@ -22,19 +22,20 @@ public class MessageBoxController extends MovableController {
         StagesManager.putController(KEY, this);
     }
 
-    public void Show(String string) {
+    public void Show(String string, Scene scene) {
         lab_context.setText(string);
+        Initialize(scene);
         stage.show();
     }
 
-    void Initialize(Scene scene) {
+    public void Initialize(Scene scene) {
         this.scene = scene;
         scene.setFill(null);//Scene透明化
         stage = new Stage();
         stage.initStyle(StageStyle.TRANSPARENT);//Stage透明化
         stage.setScene(scene);
         StagesManager.putStage(KEY, stage);
-        MoveInitialize();
+        super.Initialize();
         //控件事件初始化
         //退出按钮事件初始化
         but_exit.setOnMouseClicked(mouseEvent -> {

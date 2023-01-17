@@ -1,9 +1,10 @@
-package com.example.kittyfx;
+package com.example.kittyfx.Controllers;
 
 public class MovableController extends Controller {
+
     int pre_x = 0, pre_y = 0;
 
-    protected void MoveInitialize() {
+    public void Initialize() {
         //拖动
         scene.setOnMousePressed(event -> {
             System.out.println("Pressed");
@@ -20,5 +21,8 @@ public class MovableController extends Controller {
             stage.setX(x);
             stage.setY(y);
         });
+    }
+
+    public void Show() {
     }
 }
