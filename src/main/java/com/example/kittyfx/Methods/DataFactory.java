@@ -11,10 +11,13 @@ public class DataFactory {
         switch (source.getHead()) {
             case "Message":
                 Main.client.putTask(new ReceiveMessage(new Message(source)));
+                break;
             case "LoginReturnData":
                 Main.client.putTask(new AnalysisLoginReturnData(new LoginReturnData(source)));
+                break;
             case "RegisterReturnData":
                 Main.client.putTask(new AnalysisRegisterReturnData(new RegisterReturnData(source)));
+                break;
         }
     }
 }
@@ -41,7 +44,11 @@ class AnalysisLoginReturnData implements Runnable {
 
     @Override
     public void run() {
-        //TODO Analysis LoginReturnData
+        if (data.isLoginValid()) {
+            Main.SendMessage("登陆成功");
+        } else {
+            Main.SendMessage("登录失败\n" + data.getInformation());
+        }
     }
 }
 

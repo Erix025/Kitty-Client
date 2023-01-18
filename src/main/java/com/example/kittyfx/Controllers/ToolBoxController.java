@@ -51,7 +51,6 @@ public class ToolBoxController extends MovableController {
         // set controllers' events
         but_Exit.setOnMouseClicked(mouseEvent -> {
             StagesManager.dispose(KEY);
-            Main.SendMessage("Exit!");
         });
         but_Setting.setOnMouseClicked(event -> {
             Scene setting = null;
