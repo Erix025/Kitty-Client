@@ -1,6 +1,7 @@
 package com.example.kittyfx.Controllers;
 
 import com.example.kittyfx.manager.StagesManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,16 +26,28 @@ public class MessageBoxController extends MovableController {
     public void Show(String string, Scene scene) {
         lab_context.setText(string);
         Initialize(scene);
-        stage.show();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage.show();
+            }
+        });
+
     }
 
     public void Initialize(Scene scene) {
         this.scene = scene;
         scene.setFill(null);//Scene透明化
-        stage = new Stage();
-        stage.initStyle(StageStyle.TRANSPARENT);//Stage透明化
-        stage.setScene(scene);
-        StagesManager.putStage(KEY, stage);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.TRANSPARENT);//Stage透明化
+                StagesManager.putStage(KEY, stage);
+            }
+        });
         super.Initialize();
         //控件事件初始化
         //退出按钮事件初始化

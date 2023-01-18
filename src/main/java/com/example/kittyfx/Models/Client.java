@@ -9,19 +9,20 @@ import java.util.concurrent.Executors;
 
 public class Client {
     private Socket socket;
-    public DataInputStream in;
-    public DataOutputStream out;
+    public BufferedReader in;
+    public BufferedWriter out;
     private ReadThread readThread;
     private ExecutorService tasksThreadPool;
     private User loggedUser;
+    public final String CLIENT_TYPE = "Desktop";
 
     public Client(String address, int port) {
         try {
             //connect
             socket = new Socket(address, port);
             //get Stream
-            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             //set thread
             readThread = new ReadThread(this);
             readThread.start();
@@ -33,6 +34,15 @@ public class Client {
 
     public Socket getSocket() {
         return socket;
+    }
+
+    public void putData(String string) {
+        try {
+            out.write(string + "\n");
+            out.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void putTask(Runnable task) {

@@ -54,6 +54,10 @@ class AnalysisRegisterReturnData implements Runnable {
 
     @Override
     public void run() {
-        //TODO Analysis RegisterReturnData
+        if (data.isRegisterValid()) {
+            Main.SendMessage("注册成功，请登录");
+        } else {
+            Main.SendMessage("注册失败\n" + data.getInformation());
+        }
     }
 }
