@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -26,9 +27,13 @@ public class SettingController extends MovableController {
     @FXML
     public TextField txt_password;
     @FXML
+    public Label lab_userInfo;
+    @FXML
     public Button but_login;
     @FXML
     public Button but_register;
+    @FXML
+    public Button but_logout;
 
     public SettingController() {
         StagesManager.putController(KEY, this);
