@@ -35,8 +35,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //连接服务器
-        client = new Client("localhost", 8808);
         launch();
+        try {
+            client = new Client("localhost", 8808);
+        } catch (IOException e) {
+            Main.SendMessage("无法连接到服务器");
+        }
     }
 }

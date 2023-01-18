@@ -16,20 +16,16 @@ public class Client {
     private User loggedUser;
     public final String CLIENT_TYPE = "Desktop";
 
-    public Client(String address, int port) {
-        try {
-            //connect
-            socket = new Socket(address, port);
-            //get Stream
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            //set thread
-            readThread = new ReadThread(this);
-            readThread.start();
-            tasksThreadPool = Executors.newFixedThreadPool(5);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Client(String address, int port) throws IOException {
+        //connect
+        socket = new Socket(address, port);
+        //get Stream
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        //set thread
+        readThread = new ReadThread(this);
+        readThread.start();
+        tasksThreadPool = Executors.newFixedThreadPool(5);
     }
 
     public Socket getSocket() {

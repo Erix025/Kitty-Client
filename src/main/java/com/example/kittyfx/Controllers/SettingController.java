@@ -114,6 +114,7 @@ class SendLoginMessage implements Runnable {
 
     @Override
     public void run() {
+
         var client = Main.client;
         LoginData data = new LoginData(username, password, client.CLIENT_TYPE);
         client.putData(JSON.toJSONString(data.getJson()));
