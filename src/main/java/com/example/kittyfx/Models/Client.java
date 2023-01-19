@@ -4,6 +4,7 @@ import com.example.kittyfx.ReadThread;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,8 +21,8 @@ public class Client {
         //connect
         socket = new Socket(address, port);
         //get Stream
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+        out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
         //set thread
         readThread = new ReadThread(this);
         readThread.start();
@@ -41,7 +42,27 @@ public class Client {
         }
     }
 
+    public void disconnect() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void putTask(Runnable task) {
         tasksThreadPool.submit(task);
+    }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public boolean isLogged() {
+        return loggedUser != null;
     }
 }

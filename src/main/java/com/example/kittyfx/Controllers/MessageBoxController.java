@@ -1,7 +1,6 @@
 package com.example.kittyfx.Controllers;
 
 import com.example.kittyfx.manager.StagesManager;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,42 +16,39 @@ public class MessageBoxController extends MovableController {
     @FXML
     Button but_exit;
     int pre_x = 0, pre_y = 0;
+    public static int count = 0;
+    int number;
     public static final String KEY = "MessageBox";
 
     public MessageBoxController() {
-        StagesManager.putController(KEY, this);
+        count++;
+        number = count;
+        StagesManager.putController(KEY + number, this);
     }
 
     public void Show(String string, Scene scene) {
         lab_context.setText(string);
         Initialize(scene);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                stage.show();
-            }
-        });
+        stage.show();
+    }
 
+    public void Show(String head, String content, Scene scene) {
+        lab_heading.setText(head);
+        Show(content, scene);
     }
 
     public void Initialize(Scene scene) {
         this.scene = scene;
         scene.setFill(null);//Scene透明化
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                stage = new Stage();
-                stage.setScene(scene);
-                stage.initStyle(StageStyle.TRANSPARENT);//Stage透明化
-                StagesManager.putStage(KEY, stage);
-            }
-        });
+        stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);//Stage透明化
+        StagesManager.putStage(KEY + number, stage);
         super.Initialize();
         //控件事件初始化
         //退出按钮事件初始化
         but_exit.setOnMouseClicked(mouseEvent -> {
-            StagesManager.dispose(KEY);
+            StagesManager.dispose(KEY + number);
         });
     }
 }

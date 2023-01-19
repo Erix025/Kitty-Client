@@ -30,16 +30,28 @@ public class Main extends Application {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        MessageBoxController controller = (MessageBoxController) StagesManager.getController("MessageBox");
+        MessageBoxController controller = (MessageBoxController) StagesManager.getController(MessageBoxController.KEY + MessageBoxController.count);
         controller.Show(content, scene);
     }
 
+    public static void SendMessage(String head, String content) {
+        Scene scene = null;
+        try {
+            scene = new Scene(new FXMLLoader(Main.class.getResource("MessageBox.fxml")).load(), 200, 150);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MessageBoxController controller = (MessageBoxController) StagesManager.getController(MessageBoxController.KEY + MessageBoxController.count);
+        controller.Show(head, content, scene);
+    }
+
     public static void main(String[] args) {
-        launch();
         try {
             client = new Client("localhost", 8808);
         } catch (IOException e) {
             Main.SendMessage("无法连接到服务器");
         }
+        launch();
     }
+
 }

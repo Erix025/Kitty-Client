@@ -3,7 +3,7 @@ package com.example.kittyfx.Models;
 public class User {
     private String ID;
 
-    User(String ID) {
+    public User(String ID) {
         this.ID = ID;
     }
 

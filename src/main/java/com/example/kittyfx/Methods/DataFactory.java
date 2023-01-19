@@ -1,16 +1,21 @@
 package com.example.kittyfx.Methods;
 
-import com.example.kittyfx.Datas.Data;
-import com.example.kittyfx.Datas.LoginReturnData;
-import com.example.kittyfx.Datas.Message;
-import com.example.kittyfx.Datas.RegisterReturnData;
+import com.example.kittyfx.Controllers.SendMessageBoxController;
+import com.example.kittyfx.Controllers.SettingController;
+import com.example.kittyfx.Datas.*;
 import com.example.kittyfx.Main;
+import com.example.kittyfx.Models.User;
+import com.example.kittyfx.manager.StagesManager;
+import javafx.application.Platform;
 
 public class DataFactory {
     public static void ReceiveData(Data source) {
         switch (source.getHead()) {
             case "Message":
                 Main.client.putTask(new ReceiveMessage(new Message(source)));
+                break;
+            case "MessageReturn":
+                Main.client.putTask(new AnalysisMessageReturn(new MessageReturn(source)));
                 break;
             case "LoginReturnData":
                 Main.client.putTask(new AnalysisLoginReturnData(new LoginReturnData(source)));
@@ -31,7 +36,36 @@ class ReceiveMessage implements Runnable {
 
     @Override
     public void run() {
-        //TODO receive Message
+        String head = "来自" + message.getSendUserID() + "的消息";
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Main.SendMessage(head, message.getContent());
+            }
+        });
+    }
+}
+
+class AnalysisMessageReturn implements Runnable {
+    MessageReturn data;
+
+    AnalysisMessageReturn(MessageReturn data) {
+        this.data = data;
+    }
+
+    @Override
+    public void run() {
+        var SendMessageWindow = (SendMessageBoxController) StagesManager.getController(SendMessageBoxController.KEY);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (data.isMessageValid()) {
+                    SendMessageWindow.txt_message.setText("");
+                }
+                Main.SendMessage(data.getInformation());
+            }
+        });
+
     }
 }
 
@@ -44,10 +78,33 @@ class AnalysisLoginReturnData implements Runnable {
 
     @Override
     public void run() {
+        var SettingWindow = (SettingController) StagesManager.getController(SettingController.KEY);
         if (data.isLoginValid()) {
-            Main.SendMessage("登陆成功");
+            var user = new User(SettingWindow.txt_username.getText());
+            Main.client.setLoggedUser(user);
+            //set UI
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    SettingWindow.txt_username.setText("");
+                    SettingWindow.txt_password.setText("");
+                    SettingWindow.ap_login.setVisible(false);
+                    SettingWindow.but_logout.setVisible(true);
+                    SettingWindow.lab_userInfo.setText(user.getID() + " 您已登录");
+                    Main.SendMessage("登陆成功");
+                }
+            });
+
         } else {
-            Main.SendMessage("登录失败\n" + data.getInformation());
+            //set UI
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    SettingWindow.txt_password.setText("");
+                    Main.SendMessage("登录失败\n" + data.getInformation());
+                }
+            });
+
         }
     }
 }
@@ -61,10 +118,28 @@ class AnalysisRegisterReturnData implements Runnable {
 
     @Override
     public void run() {
+        var SettingWindow = (SettingController) StagesManager.getController(SettingController.KEY);
         if (data.isRegisterValid()) {
-            Main.SendMessage("注册成功，请登录");
+            //set UI
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    SettingWindow.txt_password.setText("");
+                    Main.SendMessage("注册成功，请登录以继续");
+                }
+            });
+
         } else {
-            Main.SendMessage("注册失败\n" + data.getInformation());
+            //set UI
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    SettingWindow.txt_username.setText("");
+                    SettingWindow.txt_password.setText("");
+                    Main.SendMessage("注册失败\n" + data.getInformation());
+                }
+            });
+
         }
     }
 }

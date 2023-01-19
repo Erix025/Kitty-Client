@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,6 +23,10 @@ public class SettingController extends MovableController {
     public Button but_exit;
     @FXML
     public VBox panel;
+    @FXML
+    public AnchorPane ap_loginInfo;
+    @FXML
+    public AnchorPane ap_login;
     @FXML
     public TextField txt_username;
     @FXML
@@ -53,6 +58,12 @@ public class SettingController extends MovableController {
         stage.setScene(scene);
         this.scene = scene;
         super.Initialize();
+        //initialize UI
+        if (Main.client.isLogged()) {
+            ap_login.setVisible(false);
+            lab_userInfo.setText(Main.client.getLoggedUser().getID() + " 您已登录");
+            but_logout.setVisible(true);
+        }
         //put stage into manager
         StagesManager.putStage(KEY, stage);
         //set stage no border
