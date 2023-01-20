@@ -45,7 +45,7 @@ public class MainController extends MovableController {
             if (event.getClickCount() == 2) {
                 Scene scene_toolbox = null;
                 try {
-                    scene_toolbox = new Scene(new FXMLLoader(Main.class.getResource("ToolBox.fxml")).load(), 320, 200);
+                    scene_toolbox = new Scene(new FXMLLoader(Main.class.getResource("ToolBox.fxml")).load(), 250, 200);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

@@ -18,9 +18,18 @@ public class Main extends Application {
         //加载Main
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main.fxml"));
         //设置主窗口
-        Scene scene_Main = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene_Main = new Scene(fxmlLoader.load());
         ((MainController) StagesManager.getController("Main")).Show(scene_Main);
-        //新窗口
+        try {
+            client = new Client("111.231.69.245", 8808);
+        } catch (IOException e) {
+            Main.SendMessage("警告", "无法连接到服务器", new Runnable() {
+                @Override
+                public void run() {
+                    System.exit(0);
+                }
+            });
+        }
     }
 
     public static void SendMessage(String content) {
@@ -45,13 +54,20 @@ public class Main extends Application {
         controller.Show(head, content, scene);
     }
 
-    public static void main(String[] args) {
+    public static void SendMessage(String head, String content, Runnable task) {
+        Scene scene = null;
         try {
-            client = new Client("localhost", 8808);
+            scene = new Scene(new FXMLLoader(Main.class.getResource("MessageBox.fxml")).load(), 200, 150);
         } catch (IOException e) {
-            Main.SendMessage("无法连接到服务器");
+            throw new RuntimeException(e);
         }
+        MessageBoxController controller = (MessageBoxController) StagesManager.getController(MessageBoxController.KEY + MessageBoxController.count);
+        controller.Show(head, content, scene, task);
+    }
+
+    public static void main(String[] args) {
         launch();
     }
+
 
 }

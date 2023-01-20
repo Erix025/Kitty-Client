@@ -97,7 +97,7 @@ class SendMessage implements Runnable {
 
     @Override
     public void run() {
-        var data = new Message(content, new Date(), receiverID, Main.client.getLoggedUser().getID());
+        var data = new Message(content, new Date(), Main.client.getLoggedUser().getID(), receiverID);
         Main.client.putData(JSON.toJSONString(data.getJson()));
     }
 }

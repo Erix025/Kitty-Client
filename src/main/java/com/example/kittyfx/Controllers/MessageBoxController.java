@@ -18,6 +18,7 @@ public class MessageBoxController extends MovableController {
     int pre_x = 0, pre_y = 0;
     public static int count = 0;
     int number;
+    Runnable task;
     public static final String KEY = "MessageBox";
 
     public MessageBoxController() {
@@ -37,6 +38,11 @@ public class MessageBoxController extends MovableController {
         Show(content, scene);
     }
 
+    public void Show(String head, String content, Scene scene, Runnable task) {
+        this.task = task;
+        Show(head, content, scene);
+    }
+
     public void Initialize(Scene scene) {
         this.scene = scene;
         scene.setFill(null);//Scene透明化
@@ -48,6 +54,9 @@ public class MessageBoxController extends MovableController {
         //控件事件初始化
         //退出按钮事件初始化
         but_exit.setOnMouseClicked(mouseEvent -> {
+            if (task != null) {
+                task.run();
+            }
             StagesManager.dispose(KEY + number);
         });
     }

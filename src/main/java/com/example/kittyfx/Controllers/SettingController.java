@@ -2,6 +2,7 @@ package com.example.kittyfx.Controllers;
 
 import com.alibaba.fastjson2.JSON;
 import com.example.kittyfx.Datas.LoginData;
+import com.example.kittyfx.Datas.LogoutData;
 import com.example.kittyfx.Datas.RegisterData;
 import com.example.kittyfx.Main;
 import com.example.kittyfx.manager.StagesManager;
@@ -74,6 +75,9 @@ public class SettingController extends MovableController {
                 StagesManager.dispose(KEY);
             }
         });
+        but_logout.setOnMouseClicked(event -> {
+            Main.client.putTask(new SendLogoutMessage(Main.client.getLoggedUser().getID()));
+        });
         but_login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -125,9 +129,23 @@ class SendLoginMessage implements Runnable {
 
     @Override
     public void run() {
-
         var client = Main.client;
         LoginData data = new LoginData(username, password, client.CLIENT_TYPE);
+        client.putData(JSON.toJSONString(data.getJson()));
+    }
+}
+
+class SendLogoutMessage implements Runnable {
+    private final String username;
+
+    SendLogoutMessage(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public void run() {
+        var client = Main.client;
+        LogoutData data = new LogoutData(username, client.CLIENT_TYPE);
         client.putData(JSON.toJSONString(data.getJson()));
     }
 }

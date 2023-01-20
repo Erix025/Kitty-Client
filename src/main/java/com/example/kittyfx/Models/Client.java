@@ -65,4 +65,8 @@ public class Client {
     public boolean isLogged() {
         return loggedUser != null;
     }
+
+    public void logout() {
+        loggedUser = null;
+    }
 }

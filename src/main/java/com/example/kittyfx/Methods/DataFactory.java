@@ -23,6 +23,8 @@ public class DataFactory {
             case "RegisterReturnData":
                 Main.client.putTask(new AnalysisRegisterReturnData(new RegisterReturnData(source)));
                 break;
+            case "LogoutReturnData":
+                Main.client.putTask(new AnalysisLogoutReturnData(new LogoutReturnData(source)));
         }
     }
 }
@@ -140,6 +142,33 @@ class AnalysisRegisterReturnData implements Runnable {
                 }
             });
 
+        }
+    }
+}
+
+class AnalysisLogoutReturnData implements Runnable {
+    LogoutReturnData data;
+
+    AnalysisLogoutReturnData(LogoutReturnData data) {
+        this.data = data;
+    }
+
+    @Override
+    public void run() {
+        var SettingWindow = (SettingController) StagesManager.getController(SettingController.KEY);
+        if (data.isLogoutValid()) {
+            //logout user
+            Main.client.logout();
+            Platform.runLater(() -> {
+                Main.SendMessage("注销成功");
+                SettingWindow.lab_userInfo.setText("未登录");
+                SettingWindow.but_logout.setVisible(false);
+                SettingWindow.ap_login.setVisible(true);
+                SettingWindow.txt_username.setText("");
+                SettingWindow.txt_password.setText("");
+            });
+        } else {
+            Main.SendMessage(data.getInformation());
         }
     }
 }
