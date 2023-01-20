@@ -1,3 +1,5 @@
+import io.github.fvarrui.javapackager.gradle.PackageTask
+
 buildscript {
     repositories {
         mavenCentral()
@@ -69,7 +71,7 @@ jlinkZip {
     group = 'distribution'
 }
 apply plugin: 'io.github.fvarrui.javapackager.plugin'
-task packageMyApp(type: io.github.fvarrui.javapackager.gradle.PackageTask, dependsOn: build) {
+task packageMyApp(type: PackageTask, dependsOn: build) {
     // mandatory
     mainClass = 'com.example.kittyfx.Launcher'
     // optional

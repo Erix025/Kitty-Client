@@ -1,4 +1,4 @@
-package com.example.kittyfx.Controllers;
+package com.example.kittyfx.controllers;
 
 import com.example.kittyfx.Main;
 import com.example.kittyfx.manager.StagesManager;
@@ -43,7 +43,7 @@ public class MainController extends MovableController {
                 StagesManager.dispose(ToolBoxController.KEY);
             }
             if (event.getClickCount() == 2) {
-                Scene scene_toolbox = null;
+                Scene scene_toolbox;
                 try {
                     scene_toolbox = new Scene(new FXMLLoader(Main.class.getResource("ToolBox.fxml")).load(), 250, 200);
                 } catch (IOException e) {

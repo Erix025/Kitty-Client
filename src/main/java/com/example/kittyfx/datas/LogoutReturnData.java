@@ -1,11 +1,11 @@
-package com.example.kittyfx.Datas;
+package com.example.kittyfx.datas;
 
 import com.alibaba.fastjson2.JSONObject;
 
 public class LogoutReturnData {
-    private JSONObject json;
-    private boolean isLogoutValid;
-    private String information;
+    private final JSONObject json;
+    private final boolean isLogoutValid;
+    private final String information;
     public final static String Head = "LogoutReturnData";
 
     public LogoutReturnData(Data data) {

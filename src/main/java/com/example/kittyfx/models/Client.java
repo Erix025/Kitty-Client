@@ -1,4 +1,4 @@
-package com.example.kittyfx.Models;
+package com.example.kittyfx.models;
 
 import com.example.kittyfx.ReadThread;
 
@@ -9,11 +9,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Client {
-    private Socket socket;
+    private final Socket socket;
     public BufferedReader in;
     public BufferedWriter out;
-    private ReadThread readThread;
-    private ExecutorService tasksThreadPool;
+    private final ExecutorService tasksThreadPool;
     private User loggedUser;
     public final String CLIENT_TYPE = "Desktop";
 
@@ -24,13 +23,9 @@ public class Client {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
         //set thread
-        readThread = new ReadThread(this);
+        ReadThread readThread = new ReadThread(this);
         readThread.start();
         tasksThreadPool = Executors.newFixedThreadPool(5);
-    }
-
-    public Socket getSocket() {
-        return socket;
     }
 
     public void putData(String string) {

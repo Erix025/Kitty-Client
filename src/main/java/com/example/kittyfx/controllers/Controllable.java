@@ -1,4 +1,4 @@
-package com.example.kittyfx.Controllers;
+package com.example.kittyfx.controllers;
 
 import javafx.scene.Scene;
 

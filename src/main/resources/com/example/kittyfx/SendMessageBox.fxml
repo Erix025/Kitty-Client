@@ -5,64 +5,56 @@
 <?import javafx.scene.layout.*?>
 <VBox fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="218.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.kittyfx.Controllers.SendMessageBoxController">
-    <children>
-        <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="312.0" text="发送信息">
-            <VBox.margin>
-                <Insets left="5.0"/>
-            </VBox.margin>
+      fx:controller="com.example.kittyfx.controllers.SendMessageBoxController">
+    <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="312.0" text="发送信息">
+        <VBox.margin>
+            <Insets left="5.0"/>
+        </VBox.margin>
+    </Label>
+    <HBox>
+        <VBox.margin>
+            <Insets bottom="5.0" left="10.0" top="5.0"/>
+        </VBox.margin>
+        <Label maxWidth="1.7976931348623157E308" text="登录信息">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
         </Label>
-        <HBox>
-            <children>
-                <Label maxWidth="1.7976931348623157E308" text="登录信息">
-                    <HBox.margin>
-                        <Insets/>
-                    </HBox.margin>
-                </Label>
-                <Label fx:id="lab_loginInfo" text="未登录">
-                    <HBox.margin>
-                        <Insets left="10.0"/>
-                    </HBox.margin>
-                </Label>
-            </children>
-            <VBox.margin>
-                <Insets bottom="5.0" left="10.0" top="5.0"/>
-            </VBox.margin>
-        </HBox>
-        <HBox>
-            <children>
-                <Label contentDisplay="CENTER" text="发送对象">
-                    <HBox.margin>
-                        <Insets left="10.0" top="2.0"/>
-                    </HBox.margin>
-                </Label>
-                <TextField fx:id="txt_objectUser" prefHeight="23.0" prefWidth="164.0">
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="5.0"/>
-                    </HBox.margin>
-                </TextField>
-            </children>
-            <VBox.margin>
-                <Insets top="5.0"/>
-            </VBox.margin>
-        </HBox>
-        <TextArea fx:id="txt_message" prefHeight="88.0" prefWidth="312.0">
-            <VBox.margin>
-                <Insets left="10.0" right="10.0"/>
-            </VBox.margin>
-        </TextArea>
-        <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="312.0">
-            <children>
-                <Button fx:id="but_exit" mnemonicParsing="false" text="返回">
-                    <HBox.margin>
-                        <Insets right="5.0"/>
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="but_send" disable="true" mnemonicParsing="false" text="发送"/>
-            </children>
-            <VBox.margin>
-                <Insets right="10.0"/>
-            </VBox.margin>
-        </HBox>
-    </children>
+        <Label fx:id="lab_loginInfo" text="未登录">
+            <HBox.margin>
+                <Insets left="10.0"/>
+            </HBox.margin>
+        </Label>
+    </HBox>
+    <HBox>
+        <VBox.margin>
+            <Insets top="5.0"/>
+        </VBox.margin>
+        <Label contentDisplay="CENTER" text="发送对象">
+            <HBox.margin>
+                <Insets left="10.0" top="2.0"/>
+            </HBox.margin>
+        </Label>
+        <TextField fx:id="txt_objectUser" prefHeight="23.0" prefWidth="164.0">
+            <HBox.margin>
+                <Insets bottom="5.0" left="5.0"/>
+            </HBox.margin>
+        </TextField>
+    </HBox>
+    <TextArea fx:id="txt_message" prefHeight="88.0" prefWidth="312.0">
+        <VBox.margin>
+            <Insets left="10.0" right="10.0"/>
+        </VBox.margin>
+    </TextArea>
+    <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="312.0">
+        <VBox.margin>
+            <Insets right="10.0"/>
+        </VBox.margin>
+        <Button fx:id="but_exit" mnemonicParsing="false" text="返回">
+            <HBox.margin>
+                <Insets right="5.0"/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="but_send" disable="true" mnemonicParsing="false" text="发送"/>
+    </HBox>
 </VBox>

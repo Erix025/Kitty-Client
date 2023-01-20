@@ -1,4 +1,4 @@
-package com.example.kittyfx.Controllers;
+package com.example.kittyfx.controllers;
 
 import com.example.kittyfx.manager.StagesManager;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class MessageBoxController extends MovableController {
     Button but_exit;
     int pre_x = 0, pre_y = 0;
     public static int count = 0;
-    int number;
+    final int number;
     Runnable task;
     public static final String KEY = "MessageBox";
 
