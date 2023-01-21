@@ -10,14 +10,17 @@
 }
 
 .panel {
-    -fx-background-color: #eff6fc;
+    -fx-background-color: #fde7e9;
 }
 
 .topBar {
-    -fx-background-color: #0078d4;
-    -fx-color: #ffffff;
+    -fx-background-color: #d83b01;
 }
 
 .text {
     -fx-font-size: 16px;
+}
+
+.fu {
+    -fx-background-image: url(福.png);
 }

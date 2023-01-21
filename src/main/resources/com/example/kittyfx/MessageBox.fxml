@@ -3,27 +3,28 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0"
-      prefWidth="200.0" styleClass="panel" stylesheets="@MessageBox.css" xmlns="http://javafx.com/javafx/17"
+      prefWidth="200.0" styleClass="panel" stylesheets="@MessageBox.css" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kittyfx.controllers.MessageBoxController">
     <AnchorPane prefHeight="40.0" prefWidth="200.0" styleClass="topBar">
         <VBox.margin>
             <Insets/>
         </VBox.margin>
-        <Label fx:id="lab_heading" layoutX="17.0" text="消息" textFill="#eff6fc" AnchorPane.topAnchor="0.0"/>
+        <Label fx:id="lab_heading" layoutX="17.0" text="消息" textFill="#fde7e9" AnchorPane.topAnchor="0.0"/>
     </AnchorPane>
     <AnchorPane prefHeight="69.0" prefWidth="200.0">
         <Label fx:id="lab_context" alignment="CENTER" layoutX="14.0" prefHeight="76.0" prefWidth="174.0"
-               styleClass="text" stylesheets="@MessageBox.css" text="Context" textAlignment="CENTER"
-               wrapText="true">
+               styleClass="text" stylesheets="@MessageBox.css" text="Context" textAlignment="CENTER" wrapText="true">
             <font>
                 <Font name="Segoe Print" size="12.0"/>
             </font>
         </Label>
     </AnchorPane>
-    <AnchorPane prefHeight="23.0" prefWidth="200.0" stylesheets="@MessageBox.css">
+    <AnchorPane prefHeight="86.0" prefWidth="196.0" stylesheets="@MessageBox.css">
         <VBox.margin>
             <Insets bottom="8.0"/>
         </VBox.margin>
@@ -33,5 +34,9 @@
                 <Insets bottom="5.0"/>
             </padding>
         </Button>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="-2.0" pickOnBounds="true"
+                   preserveRatio="true" styleClass="fu">
+            <Image url="@福.png"/>
+        </ImageView>
     </AnchorPane>
 </VBox>
