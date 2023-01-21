@@ -5,8 +5,8 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 
 public class StagesManager {
-    private static HashMap<String, Stage> STAGE = new HashMap<String, Stage>();
-    private static HashMap<String, Object> CONTROLLER = new HashMap<String, Object>();
+    private static final HashMap<String, Stage> STAGE = new HashMap<>();
+    private static final HashMap<String, Object> CONTROLLER = new HashMap<>();
 
     public static Stage getStage(String key) {
         return STAGE.get(key);

@@ -1,3 +1,14 @@
+import io.github.fvarrui.javapackager.gradle.PackageTask
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.github.fvarrui:javapackager:1.6.7'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
@@ -58,4 +69,12 @@ jlink {
 
 jlinkZip {
     group = 'distribution'
+}
+apply plugin: 'io.github.fvarrui.javapackager.plugin'
+task packageMyApp(type: PackageTask, dependsOn: build) {
+    // mandatory
+    mainClass = 'com.example.kittyfx.Launcher'
+    // optional
+    bundleJre = true
+    generateInstaller = false
 }

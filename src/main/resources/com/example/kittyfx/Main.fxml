@@ -4,8 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<VBox prefHeight="136.0" prefWidth="214.0" styleClass="root" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kittyfx.Controllers.MainController">
+<VBox prefHeight="136.0" prefWidth="214.0" styleClass="root" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kittyfx.controllers.MainController">
     <ImageView fitHeight="263.0" fitWidth="317.0" pickOnBounds="true" preserveRatio="true">
         <VBox.margin>
             <Insets/>

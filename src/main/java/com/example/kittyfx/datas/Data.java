@@ -1,10 +1,10 @@
-package com.example.kittyfx.Datas;
+package com.example.kittyfx.datas;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 
 public class Data {
-    private JSONObject json;
+    private final JSONObject json;
 
     public String getHead() {
         return json.getString("Head");

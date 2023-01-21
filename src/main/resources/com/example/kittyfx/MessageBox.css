@@ -1,14 +1,21 @@
-.but_exit {
-    -fx-background-image: url(MessageBox/Exit_small.png);
+.button {
+    -fx-background-color: #fff4ce;
+    -fx-border-width: 2px;
+    -fx-border-color: #ffc038;
+    -fx-font-size: 12px
 }
 
-.but_exit:hover {
-    -fx-background-image: url(MessageBox/Exit_small_hover.png);
+.button:hover {
+    -fx-background-color: #ff841f;
 }
 
 .panel {
-    -fx-background-image: url(MessageBox/Background.png);
-    -fx-background-color: transparent;
+    -fx-background-color: #eff6fc;
+}
+
+.topBar {
+    -fx-background-color: #0078d4;
+    -fx-color: #ffffff;
 }
 
 .text {

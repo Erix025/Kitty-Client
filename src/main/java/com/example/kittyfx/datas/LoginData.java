@@ -1,12 +1,12 @@
-package com.example.kittyfx.Datas;
+package com.example.kittyfx.datas;
 
 import com.alibaba.fastjson2.JSONObject;
 
 public class LoginData {
-    private JSONObject json;
-    private String userID;
-    private String password;
-    private String clientType;
+    private final JSONObject json;
+    private final String userID;
+    private final String password;
+    private final String clientType;
     public final static String Head = "LoginData";
 
 
@@ -15,7 +15,7 @@ public class LoginData {
         json = data.getJson();
         userID = json.getString("UserID");
         password = json.getString("Password");
-        clientType = json.getString("clientType");
+        clientType = json.getString("ClientType");
     }
 
     public LoginData(String userID, String password, String clientType)//Create the LoginData

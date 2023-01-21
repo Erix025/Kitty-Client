@@ -1,15 +1,15 @@
 package com.example.kittyfx;
 
 import com.alibaba.fastjson2.JSONException;
-import com.example.kittyfx.Datas.Data;
-import com.example.kittyfx.Methods.DataFactory;
-import com.example.kittyfx.Models.Client;
+import com.example.kittyfx.datas.Data;
+import com.example.kittyfx.methods.DataFactory;
+import com.example.kittyfx.models.Client;
 
 import java.io.IOException;
 
 public class ReadThread extends Thread {
     private Thread thread;
-    private Client client;
+    private final Client client;
     private final static String threadName = "KittyClientReadThread";
 
     public ReadThread(Client client) {

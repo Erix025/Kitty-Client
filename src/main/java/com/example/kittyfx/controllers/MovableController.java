@@ -1,4 +1,4 @@
-package com.example.kittyfx.Controllers;
+package com.example.kittyfx.controllers;
 
 public class MovableController extends Controller {
 

@@ -1,4 +1,4 @@
-package com.example.kittyfx.Controllers;
+package com.example.kittyfx.controllers;
 
 import com.example.kittyfx.Main;
 import com.example.kittyfx.manager.StagesManager;
@@ -21,6 +21,8 @@ public class ToolBoxController extends MovableController {
 
     @FXML
     VBox panel;
+    @FXML
+    Button but_Close;
     @FXML
     Button but_Exit;
     @FXML
@@ -49,20 +51,26 @@ public class ToolBoxController extends MovableController {
         scene.setFill(null);
         StagesManager.putStage(KEY, stage);
         // set controllers' events
-        but_Exit.setOnMouseClicked(mouseEvent -> {
+        but_Close.setOnMouseClicked(event -> {
             StagesManager.dispose(KEY);
         });
+        but_Exit.setOnMouseClicked(event -> {
+            Main.client.disconnect();
+            System.exit(0);
+        });
         but_Setting.setOnMouseClicked(event -> {
-            Scene setting = null;
+            Scene setting;
             try {
                 setting = new Scene(new FXMLLoader(Main.class.getResource("Setting.fxml")).load());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            ((SettingController) StagesManager.getController(SettingController.KEY)).Show(setting);
+            var SettingWindow = ((SettingController) StagesManager.getController(SettingController.KEY));
+
+            SettingWindow.Show(setting);
         });
         but_SendMessage.setOnMouseClicked(event -> {
-            Scene sendMessage = null;
+            Scene sendMessage;
             try {
                 sendMessage = new Scene(new FXMLLoader(Main.class.getResource("SendMessageBox.fxml")).load());
             } catch (IOException e) {

@@ -9,8 +9,8 @@ module com.example.kittyfx {
 
     opens com.example.kittyfx to javafx.fxml;
     exports com.example.kittyfx;
-    opens com.example.kittyfx.Controllers to javafx.fxml;
-    exports com.example.kittyfx.Controllers;
-    exports com.example.kittyfx.Models;
-    opens com.example.kittyfx.Models to javafx.fxml;
+    opens com.example.kittyfx.controllers to javafx.fxml;
+    exports com.example.kittyfx.controllers;
+    exports com.example.kittyfx.models;
+    opens com.example.kittyfx.models to javafx.fxml;
 }
